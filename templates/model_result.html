@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>model result</title>
+    <link href="{{url_for('static', filename='css/index.css')}}" rel="stylesheet" type="text/css"/>
+</head>  
+<script>
+    window.onload = function() {
+        parseResult();
+    };
+
+    function parseResult() {
+            var s = {{result|tojson}};
+            var ss = s.substr(67, s.length-1);
+            splits = ss.split("\", \""); // splits on each person
+
+            var res = "<br><strong>Model Prediction Results</strong><br>";
+            for (var i = 0; i < splits.length; i++) {
+                if (i == splits.length - 1) { // last
+                    res += "<br>" + splits[i].substr(0, splits[i].length - 2) + "<br>";
+                } else {
+                    res += "<br>" + splits[i] + "<br>";
+                }
+            }
+            document.getElementById ("parsed").innerHTML = res;
+    }
+</script>
+<body>
+    <div class="result">
+        <div class="result0">
+            <p style = "color:red">{{overall}}</p>
+            <p id="parsed"></p>
+            <div>
+                <img src="data:image/png;base64,{{img_data}}"/>
+            </div>
+        </div>
+    </div>
+
+</body>  
+</html>  

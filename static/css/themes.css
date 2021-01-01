@@ -1,0 +1,16 @@
+  .block_center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .inline_center {
+    text-align: center;
+  }
+
+  .pad {
+    padding: 20px;
+  }
+
+  .orange {
+    background-color: orange;
+  }

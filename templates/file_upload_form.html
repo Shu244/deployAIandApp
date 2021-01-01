@@ -1,0 +1,39 @@
+<html>
+<head>  
+    <title>Group Photo Selector</title>
+
+    <link href="{{url_for('static', filename='css/index.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{url_for('static', filename='css/themes.css')}}" rel="stylesheet" type="text/css"/>
+
+    <script>
+        function getInfo() {
+            var obj = document.getElementById('file');
+
+
+            var res = "You have selected image ";
+            res += "<strong>" + obj.files.item(0).name + "</strong> of size ";
+            res += "<strong>" + obj.files.item(0).size + "</strong> bytes";
+            res += "<br>Now hit <strong>upload</strong>!<br>";
+            
+            document.getElementById ("info").innerHTML = res;
+        }
+    </script>
+</head>
+
+
+<body>  
+    <div class="main_wrapper block_center">
+        <div class="main_content orange">
+            <img class='upload_img block_center' src="static/img/up.png" alt="Upload here">
+            <form class='upload_buttons' action = "/model_result" method = "post" enctype="multipart/form-data">
+                <input type="file" id="file" name="file" onchange="getInfo()"/>
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+        <div class="info_wrapper">
+            <p class='inline_center pad'>Please wait...sometimes the app needs to download all the parameters.</p>
+            <p class='inline_center pad' id="info"></p>
+        </div>
+    </div>
+</body>  
+</html> 
